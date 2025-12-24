@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Locked-In – Play, Connect, Create</title>
+
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Favicon / App Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/lockedInOfficialLogo32.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/icons/lockedInOfficialLogo48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/lockedInOfficialLogo192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icons/lockedInOfficialLogo512.png" />
+  <script type="module" crossorigin src="/assets/index--OwCejok.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DY5BHcmt.css">
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash">
+    <!-- Updated to use the larger 512px logo -->
+    <img src="/assets/icons/lockedInOfficialLogo512.png" alt="Game Hub Logo" id="splash-logo" />
+  </div>
+
+  <!-- Hero Section (hidden until splash fades) -->
+  <section class="hero hidden" id="hero">
+    <h1 class="text-glow fade-in delay-1">Lock It In.</h1>
+    <p class="text-muted fade-in delay-2">
+      No excuses, no breaks — this is where gamers come alive. Ready to start?
+    </p>
+    <div class="actions fade-in delay-3">
+      <button id="sign-in" class="btn btn-green">Sign In</button>
+      <button id="sign-up" class="btn btn-blue">Sign Up</button>
+      <button id="about-btn" class="btn btn-orange">About</button>
+    </div>
+  </section>
+
+  <!-- Sign In Modal -->
+  <div id="signin-modal" class="modal hidden">
+    <div class="modal-content pop-in">
+      <h2>Sign In</h2>
+      <form id="login-form">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" required />
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control" required />
+        <button type="submit" class="btn btn-submit">Sign In</button>
+      </form>
+      <button class="btn btn-dark close-modal">Close</button>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div id="signup-modal" class="modal hidden">
+    <div class="modal-content pop-in">
+      <h2>Create Account</h2>
+      <form id="signup-form">
+        <label for="new-email">Email</label>
+        <input type="email" id="new-email" class="form-control" required />
+
+        <label for="new-password">Password</label>
+        <input type="password" id="new-password" class="form-control" required />
+
+        <label for="first-name">First Name</label>
+        <input type="text" id="first-name" class="form-control" required />
+
+        <label for="last-name">Last Name</label>
+        <input type="text" id="last-name" class="form-control" required />
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" class="form-control" required />
+
+        <label for="country">Country</label>
+        <input type="text" id="country" class="form-control" required />
+
+        <label for="avatar-upload">Avatar</label>
+        <input type="file" id="avatar-upload" class="form-control" accept="image/*" />
+
+        <button type="submit" class="btn btn-submit">Sign Up</button>
+      </form>
+      <button class="btn btn-dark close-modal">Close</button>
+    </div>
+  </div>
+
+  <!-- 🎵 Hidden audio element for About -->
+  <audio id="about-audio" src="/assets/aboutGameHub.mp3" preload="auto"></audio>
+
+  <!-- App container (hidden until login) -->
+  <div id="app" style="display:none;">
+    <div id="view-container"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Splash → Hero transition
+    window.addEventListener("load", () => {
+      const splash = document.getElementById("splash");
+      const hero = document.getElementById("hero");
+
+      setTimeout(() => {
+        splash.classList.add("hidden");
+        hero.classList.remove("hidden");
+      }, 2000); // adjust delay
+    });
+
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/serviceworker.js")
+        .then(() => console.log("Service Worker registered"))
+        .catch((err) => console.error("Service Worker failed:", err));
+    }
+  </script>
+</body>
+</html>

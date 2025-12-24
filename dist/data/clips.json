@@ -1,0 +1,12 @@
+[
+  {
+    "src": "/assets/clip1.mp4",
+    "host": "dylan",
+    "caption": "First test recording"
+  },
+  {
+    "src": "/assets/clip2.mp4",
+    "host": "dylan",
+    "caption": "Second test recording"
+  }
+]

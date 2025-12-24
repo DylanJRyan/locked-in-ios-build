@@ -1,0 +1,20 @@
+[
+  {
+    "id": "runner-1",
+    "title": "Neon Runner",
+    "description": "Dash through a glowing cyber‑city, avoiding obstacles and collecting energy orbs.",
+    "template": "runner"
+  },
+  {
+    "id": "paddle-1",
+    "title": "Galactic Paddle",
+    "description": "Defend your base by bouncing meteors back into space with your energy paddle.",
+    "template": "paddle"
+  },
+  {
+    "id": "arena-1",
+    "title": "Battle Arena",
+    "description": "Face off against waves of AI opponents in a fast‑paced combat arena.",
+    "template": "arena"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "armyDude1",
+    "name": "Army Dude",
+    "model": "models/armyDude1.glb"
+  },
+  {
+    "id": "knife",
+    "name": "Knife",
+    "model": "models/knife.glb"
+  },
+  {
+    "id": "lizard",
+    "name": "Lizard",
+    "model": "models/lizard.glb"
+  },
+  {
+    "id": "ninjaFox",
+    "name": "Ninja Fox",
+    "model": "models/ninjaFox.glb"
+  },
+  {
+    "id": "ninjaPanda",
+    "name": "Ninja Panda",
+    "model": "models/ninjaPanda.glb"
+  },
+  {
+    "id": "throwingStar",
+    "name": "Throwing Star",
+    "model": "models/throwingStar.glb"
+  }
+]
