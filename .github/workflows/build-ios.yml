@@ -19,22 +19,39 @@ jobs:
       - name: Install Capacitor CLI
         run: npm install -g @capacitor/cli
 
-      - name: Build iOS project
+      - name: Build iOS project (unsigned)
         run: |
           cd ios/App
           xcodebuild -project App.xcodeproj \
             -scheme App \
             -configuration Release \
             -archivePath build/App.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM="" \
             archive
 
-      - name: Export IPA
+      - name: Export unsigned IPA
         run: |
           cd ios/App
           xcodebuild -exportArchive \
             -archivePath build/App.xcarchive \
             -exportPath build \
-            -exportOptionsPlist App/App/exportOptions.plist || true
+            -exportOptionsPlist <(cat <<EOF
+            {
+              "method": "ad-hoc",
+              "compileBitcode": false,
+              "signingStyle": "manual",
+              "stripSwiftSymbols": true,
+              "destination": "export",
+              "signingCertificate": "",
+              "provisioningProfiles": {}
+            }
+            EOF
+            ) \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO || true
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
